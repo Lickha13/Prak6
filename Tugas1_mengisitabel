@@ -1,0 +1,32 @@
+<?php 
+	$servername = "localhost"; //nama server database
+	$username = "root"; //username database
+	$password = ""; //password database
+	$dbname = "bukutamu"; //database saya
+
+	//membuat suatu koneksi databse
+	$conn = mysqli_connect($servername,$username, $password, $dbname);
+
+	//mengecek suatu koneksi database yang kita buat
+	if (!$conn) {
+		die("Connection failed: ". mysqli_connect_error());
+	}
+
+	//mengisi tabel liga dengan beberapa values
+	$sql = "INSERT INTO bukutamu (nama, email, isi) 
+	VALUES ('Lickha','lickhalavenia13@hmail.com','meminjam buku belajar java')"; 
+	$sql = "INSERT INTO bukutamu (nama, email, isi) 
+	VALUES ('Putri','putrilestari13@gmail.com','meminjam buku belajar phyton')";
+	$sql = "INSERT INTO bukutamu (nama, email, isi) 
+	VALUES ('Indah','indahmaharani13@gmail.com','meminjam buku belajar php')";
+
+	 //jika pengisian table terhubung maka akan tersimpan record rersebut
+	if (mysqli_query($conn, $sql)) {
+		echo "New Record created successfully";
+	}else {// jika eror maka akan memunculkan mysql eror
+		echo "Error" . $sql . "<br>" . mysqli_error($conn);
+	}
+
+	//keluar dari koneksi
+	mysqli_close($conn); 
+ ?>
